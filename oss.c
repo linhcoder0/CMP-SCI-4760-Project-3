@@ -121,19 +121,25 @@ int main(int argc, char *argv[]) {
     if (msg_id == -1) {
         fprintf(stderr,"OSS: Error in msgget\n");
         shmdt(clock); // Detach from shared memory
-        shmctl(shm_id, IPC_RMID, NULL); 
+        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
         return EXIT_FAILURE;
     }
 
     printf("OSS: initialized message queue with id: %d\n", msg_id);
 
+    int launchedChildren = 0;
+    //we will use this variable to keep track of how many child processes we have launched so far. We will use this to make sure we do not launch more than n child processes.
+    int finishedChildren = 0;
+    //we will use this variable to keep track of how many child processes have finished so far. We will use this to make sure we wait for all child processes to finish before we clean up
+
+    while(launchedChildren < n) {
     pid_t pid = fork();
 
     if (pid == -1) { //if there is something inside in the child process, then we will have an error in fork
         fprintf(stderr, "OSS: Error in fork\n");
-        msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
         shmdt(clock); // Detach from shared memory
-        shmctl(shm_id, IPC_RMID, NULL); 
+        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
+        msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
         return EXIT_FAILURE;
     }
 
@@ -144,20 +150,24 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
+    launchedChildren++;
+
+    printf("OSS: launched worker %d with PID: %d\n", launchedChildren, pid);
+
     //Parent: send a msg to worker
     struct Message msg;
     msg.mtype = 1; // we can use any positive number for mtype, but we will just use 1 for simplicity. 
     msg.status = 1; 
 
-    printf("OSS: sending message to worker PID:: %d\n", pid);
+    printf("OSS: sending message to worker PID: %d\n", pid);
 
     if (msgsnd(msg_id, &msg, sizeof(struct Message) - sizeof(long), 0) == -1) {
         perror("OSS: msgsnd failed"); // if we fail to send a message to the worker process, we will kill the worker process 
         //and clean up the shared memory and message queue before exiting.
         kill(pid, SIGKILL); 
         wait(NULL); // wait for the child process to finish
-        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
         shmdt(clock); // Detach from shared memory
+        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
         msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
         return EXIT_FAILURE;
     }
@@ -170,8 +180,8 @@ int main(int argc, char *argv[]) {
         //and clean up the shared memory and message queue before exiting with failure
         kill(pid, SIGKILL); 
         wait(NULL); // wait for the child process to finish
-        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
         shmdt(clock); // Detach from shared memory
+        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
         msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
         return EXIT_FAILURE;
     }
@@ -179,8 +189,15 @@ int main(int argc, char *argv[]) {
     printf("OSS: received reply from worker PID: %d with status: %d\n", pid, reply.status);
 
     wait(NULL); // Wait for the child process to finish
-    shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
+    finishedChildren++;
+    printf("OSS: worker PID: %d has finished. Total finished children: %d\n", pid, finishedChildren);
+}
     shmdt(clock); // Detach from shared memory
+    shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
     msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
+
+    printf("OSS: Summary: Launched %d workers, finished %d workers.\n", launchedChildren, finishedChildren);
+
     return EXIT_SUCCESS;
 }
+
