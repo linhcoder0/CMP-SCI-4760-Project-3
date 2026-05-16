@@ -7,6 +7,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/wait.h>
+#include <sys/msg.h>
 #include <getopt.h> 
 #include <unistd.h>
 #include <signal.h>
@@ -16,6 +17,23 @@
 #define MAX_PCB_SIZE 20
 
 const size_t BUFF_SZ = sizeof(int) * 2;
+
+struct PCB {
+    int occupied; // either true or false
+    pid_t pid; // process id of this child
+    int startSeconds; // time when it was forked/created
+    int startNano; // time when it was forked /created
+    int endingTimeSeconds; // estimated time it should end
+    int endingTimeNano; // estimated time it should end
+    int messagesSent; // total times oss sent a message to it
+};
+
+struct PCB pcbTable[MAX_PCB_SIZE]; // we will have a PCB table to keep track of all the child processes. We will have a maximum of 20 child processes at any time, so we will have a PCB table of size 20.
+
+struct Message {
+    long mtype; // message type, must be > 0
+    int status; // we can use this field to indicate the status of the message
+};
 
 //• Write code for oss to parse options and receive the command parameters. [Day 2]
 
@@ -60,26 +78,26 @@ int main(int argc, char *argv[]) {
     if (i < 0) i = 0;
 
     if (s > n) s = n; //we cannot have more simul processes than total processes  
-    printf("OSS starting, PID:%d PPID:%d Called With: \n", getpid(), getppid());
-    printf("oss: n=%d s=%d t=%f i=%f f=%s\n", n, s, t, i, logFile);
+    printf("OSS: starting, PID:%d PPID:%d\nCalled With: \n", getpid(), getppid());
+    printf("OSS: n=%d s=%d t=%f i=%f f=%s\n", n, s, t, i, logFile);
 
     //Implement oss initialization of shared memory and worker being able to take in arguments. At this stage, just make sure
     //that worker can read the shared memory clock. [Day 3]
     key_t shm_key = ftok("oss.c", 0);
     if (shm_key == (key_t)-1) {
-        fprintf(stderr,"OSC: Error in ftok\n"); 
+        fprintf(stderr,"OSS: Error in ftok\n"); 
         return EXIT_FAILURE;
     }
 
     int shm_id = shmget(shm_key, BUFF_SZ, IPC_CREAT | 0700);
     if (shm_id == -1) {
-        fprintf(stderr,"OSC: Error in shmget\n");
+        fprintf(stderr,"OSS: Error in shmget\n");
         return EXIT_FAILURE;
     }
 
     int *clock = (int *)shmat(shm_id, NULL, 0);
     if (clock == (void *)-1) {
-        fprintf(stderr,"OSC: Error in shmat\n");
+        fprintf(stderr,"OSS: Error in shmat\n");
         return EXIT_FAILURE;
     }
 
@@ -89,12 +107,31 @@ int main(int argc, char *argv[]) {
     *sec = 0;
     *nano = 0;
 
-    printf("OSS initialized shared memory clock: sec=%d nano=%d\n", clock[0], clock[1]);
+    printf("OSS: initialized shared memory clock: sec=%d nano=%d\n", clock[0], clock[1]);
+
+    key_t msg_key = ftok("oss.c", 1);
+    if (msg_key == (key_t)-1) { 
+        fprintf(stderr,"OSS: Error in ftok for message queue\n"); 
+        shmdt(clock); // Detach from shared memory
+        shmctl(shm_id, IPC_RMID, NULL); 
+        return EXIT_FAILURE;
+    }
+
+    int msg_id = msgget(msg_key, IPC_CREAT | 0700); 
+    if (msg_id == -1) {
+        fprintf(stderr,"OSS: Error in msgget\n");
+        shmdt(clock); // Detach from shared memory
+        shmctl(shm_id, IPC_RMID, NULL); 
+        return EXIT_FAILURE;
+    }
+
+    printf("OSS: initialized message queue with id: %d\n", msg_id);
 
     pid_t pid = fork();
 
     if (pid == -1) { //if there is something inside in the child process, then we will have an error in fork
         fprintf(stderr, "OSS: Error in fork\n");
+        msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
         shmdt(clock); // Detach from shared memory
         shmctl(shm_id, IPC_RMID, NULL); 
         return EXIT_FAILURE;
@@ -107,9 +144,43 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    wait(NULL); // Wait for the child process to finish
-    shmdt(clock); // Detach from shared memory
-    shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
+    //Parent: send a msg to worker
+    struct Message msg;
+    msg.mtype = 1; // we can use any positive number for mtype, but we will just use 1 for simplicity. 
+    msg.status = 1; 
 
+    printf("OSS: sending message to worker PID:: %d\n", pid);
+
+    if (msgsnd(msg_id, &msg, sizeof(struct Message) - sizeof(long), 0) == -1) {
+        perror("OSS: msgsnd failed"); // if we fail to send a message to the worker process, we will kill the worker process 
+        //and clean up the shared memory and message queue before exiting.
+        kill(pid, SIGKILL); 
+        wait(NULL); // wait for the child process to finish
+        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
+        shmdt(clock); // Detach from shared memory
+        msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
+        return EXIT_FAILURE;
+    }
+
+    //Parent: wait for a message / reply from worker
+    struct Message reply;
+
+    if (msgrcv(msg_id, &reply, sizeof(struct Message) - sizeof(long), 2, 0) == -1) { // we will use mtype 2 for the reply message from the worker process
+        perror("OSS: msgrcv failed"); // if we fail to receive a message from the worker process, we will kill the child process 
+        //and clean up the shared memory and message queue before exiting with failure
+        kill(pid, SIGKILL); 
+        wait(NULL); // wait for the child process to finish
+        shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
+        shmdt(clock); // Detach from shared memory
+        msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
+        return EXIT_FAILURE;
+    }
+
+    printf("OSS: received reply from worker PID: %d with status: %d\n", pid, reply.status);
+
+    wait(NULL); // Wait for the child process to finish
+    shmctl(shm_id, IPC_RMID, NULL); // Mark the shared memory segment for deletion
+    shmdt(clock); // Detach from shared memory
+    msgctl(msg_id, IPC_RMID, NULL); // Mark the message queue for deletion
     return EXIT_SUCCESS;
 }
