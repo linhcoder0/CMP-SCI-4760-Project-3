@@ -1,0 +1,9 @@
+• Set up the source files and Makefiles [Day 1]
+• Write code for oss to parse options and receive the command parameters. [Day 2]
+• Implement oss initialization of shared memory and worker being able to take in arguments. At this stage, just make sure
+that worker can read the shared memory clock. [Day 3]
+• Implement oss to fork() and then exec() off one worker and have them just communicate back and forth using the message
+queue, making sure the message works. [Day 4-5]
+• Get oss to fork off workers up until the -n parameter and do their tasks [Day 6-7]
+• Implement the simultaneous restriction, as well as implement the process table and store data in it. [Day 8-9]
+• Testing and make sure your README file indicates how to run your project. [Day 10+]
