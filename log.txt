@@ -1,0 +1,411 @@
+OSS: starting, PID:93064 PPID:39278
+Called With: 
+OSS: n=6 s=2 t=1.000000 i=0.000000 f=log.txt
+OSS: initialized shared memory clock and message queue with id: 5
+OSS: Launched worker 1 PID: 93065, PCB Slot: 0, Time: 0:10000000, Estimated Lifetime: 1 sec 0 nano, Estimated End Time: 1:10000000
+
+OSS PID:93064 SysClockS: 0 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93065      0 10000000        1 10000000            0
+ 1        0      0      0      0        0        0            0
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Launched worker 2 PID: 93066, PCB Slot: 1, Time: 0:10000000, Estimated Lifetime: 1 sec 0 nano, Estimated End Time: 2:10000000
+
+OSS PID:93064 SysClockS: 0 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93065      0 10000000        1 10000000            0
+ 1        1  93066      0 10000000        2 10000000            0
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93065 at time: 0:10000000
+OSS: Received reply from worker slot: 0 PID: 93065 with status: 1 at time: 0:10000000
+OSS: Sending message to worker slot: 1 PID: 93066 at time: 0:135000000
+OSS: Received reply from worker slot: 1 PID: 93066 with status: 1 at time: 0:135000000
+OSS: Sending message to worker slot: 0 PID: 93065 at time: 0:260000000
+OSS: Received reply from worker slot: 0 PID: 93065 with status: 1 at time: 0:260000000
+OSS: Sending message to worker slot: 1 PID: 93066 at time: 0:385000000
+OSS: Received reply from worker slot: 1 PID: 93066 with status: 1 at time: 0:385000000
+
+OSS PID:93064 SysClockS: 0 SysclockNano: 510000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93065      0 10000000        1 10000000            2
+ 1        1  93066      0 10000000        2 10000000            2
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93065 at time: 0:510000000
+OSS: Received reply from worker slot: 0 PID: 93065 with status: 1 at time: 0:510000000
+OSS: Sending message to worker slot: 1 PID: 93066 at time: 0:635000000
+OSS: Received reply from worker slot: 1 PID: 93066 with status: 1 at time: 0:635000000
+OSS: Sending message to worker slot: 0 PID: 93065 at time: 0:760000000
+OSS: Received reply from worker slot: 0 PID: 93065 with status: 1 at time: 0:760000000
+OSS: Sending message to worker slot: 1 PID: 93066 at time: 0:885000000
+OSS: Received reply from worker slot: 1 PID: 93066 with status: 1 at time: 0:885000000
+
+OSS PID:93064 SysClockS: 1 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93065      0 10000000        1 10000000            4
+ 1        1  93066      0 10000000        2 10000000            4
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93065 at time: 1:10000000
+OSS: Received reply from worker slot: 0 PID: 93065 with status: 0 at time: 1:10000000
+OSS: Worker slot: 0 PID: 93065 is terminated
+OSS: Launched worker 3 PID: 93067, PCB Slot: 0, Time: 1:260000000, Estimated Lifetime: 1 sec 0 nano, Estimated End Time: 3:260000000
+
+OSS PID:93064 SysClockS: 1 SysclockNano: 260000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93067      1 260000000        3 260000000            0
+ 1        1  93066      0 10000000        2 10000000            4
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 1 PID: 93066 at time: 1:260000000
+OSS: Received reply from worker slot: 1 PID: 93066 with status: 0 at time: 1:260000000
+OSS: Worker slot: 1 PID: 93066 is terminated
+
+OSS PID:93064 SysClockS: 1 SysclockNano: 510000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93067      1 260000000        3 260000000            0
+ 1        0      0      0      0        0        0            0
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Launched worker 4 PID: 93068, PCB Slot: 1, Time: 1:510000000, Estimated Lifetime: 1 sec 0 nano, Estimated End Time: 3:510000000
+
+OSS PID:93064 SysClockS: 1 SysclockNano: 510000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93067      1 260000000        3 260000000            0
+ 1        1  93068      1 510000000        3 510000000            0
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93067 at time: 1:510000000
+OSS: Received reply from worker slot: 0 PID: 93067 with status: 1 at time: 1:510000000
+OSS: Sending message to worker slot: 1 PID: 93068 at time: 1:635000000
+OSS: Received reply from worker slot: 1 PID: 93068 with status: 1 at time: 1:635000000
+OSS: Sending message to worker slot: 0 PID: 93067 at time: 1:760000000
+OSS: Received reply from worker slot: 0 PID: 93067 with status: 1 at time: 1:760000000
+OSS: Sending message to worker slot: 1 PID: 93068 at time: 1:885000000
+OSS: Received reply from worker slot: 1 PID: 93068 with status: 1 at time: 1:885000000
+
+OSS PID:93064 SysClockS: 2 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93067      1 260000000        3 260000000            2
+ 1        1  93068      1 510000000        3 510000000            2
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93067 at time: 2:10000000
+OSS: Received reply from worker slot: 0 PID: 93067 with status: 1 at time: 2:10000000
+OSS: Sending message to worker slot: 1 PID: 93068 at time: 2:135000000
+OSS: Received reply from worker slot: 1 PID: 93068 with status: 1 at time: 2:135000000
+OSS: Sending message to worker slot: 0 PID: 93067 at time: 2:260000000
+OSS: Received reply from worker slot: 0 PID: 93067 with status: 1 at time: 2:260000000
+OSS: Sending message to worker slot: 1 PID: 93068 at time: 2:385000000
+OSS: Received reply from worker slot: 1 PID: 93068 with status: 1 at time: 2:385000000
+
+OSS PID:93064 SysClockS: 2 SysclockNano: 510000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93067      1 260000000        3 260000000            4
+ 1        1  93068      1 510000000        3 510000000            4
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93067 at time: 2:510000000
+OSS: Received reply from worker slot: 0 PID: 93067 with status: 0 at time: 2:510000000
+OSS: Worker slot: 0 PID: 93067 is terminated
+OSS: Launched worker 5 PID: 93069, PCB Slot: 0, Time: 2:760000000, Estimated Lifetime: 1 sec 0 nano, Estimated End Time: 4:760000000
+
+OSS PID:93064 SysClockS: 2 SysclockNano: 760000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93069      2 760000000        4 760000000            0
+ 1        1  93068      1 510000000        3 510000000            4
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 1 PID: 93068 at time: 2:760000000
+OSS: Received reply from worker slot: 1 PID: 93068 with status: 0 at time: 2:760000000
+OSS: Worker slot: 1 PID: 93068 is terminated
+
+OSS PID:93064 SysClockS: 3 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93069      2 760000000        4 760000000            0
+ 1        0      0      0      0        0        0            0
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Launched worker 6 PID: 93070, PCB Slot: 1, Time: 3:10000000, Estimated Lifetime: 1 sec 0 nano, Estimated End Time: 5:10000000
+
+OSS PID:93064 SysClockS: 3 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93069      2 760000000        4 760000000            0
+ 1        1  93070      3 10000000        5 10000000            0
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93069 at time: 3:10000000
+OSS: Received reply from worker slot: 0 PID: 93069 with status: 1 at time: 3:10000000
+OSS: Sending message to worker slot: 1 PID: 93070 at time: 3:135000000
+OSS: Received reply from worker slot: 1 PID: 93070 with status: 1 at time: 3:135000000
+OSS: Sending message to worker slot: 0 PID: 93069 at time: 3:260000000
+OSS: Received reply from worker slot: 0 PID: 93069 with status: 1 at time: 3:260000000
+OSS: Sending message to worker slot: 1 PID: 93070 at time: 3:385000000
+OSS: Received reply from worker slot: 1 PID: 93070 with status: 1 at time: 3:385000000
+
+OSS PID:93064 SysClockS: 3 SysclockNano: 510000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        1  93069      2 760000000        4 760000000            2
+ 1        1  93070      3 10000000        5 10000000            2
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 0 PID: 93069 at time: 3:510000000
+OSS: Received reply from worker slot: 0 PID: 93069 with status: 1 at time: 3:510000000
+OSS: Sending message to worker slot: 1 PID: 93070 at time: 3:635000000
+OSS: Received reply from worker slot: 1 PID: 93070 with status: 1 at time: 3:635000000
+OSS: Sending message to worker slot: 0 PID: 93069 at time: 3:760000000
+OSS: Received reply from worker slot: 0 PID: 93069 with status: 0 at time: 3:760000000
+OSS: Worker slot: 0 PID: 93069 is terminated
+
+OSS PID:93064 SysClockS: 4 SysclockNano: 10000000
+Process Table:
+Entry Occupied PID StartS StartN EndingTS EndingTN MessagesSent
+ 0        0      0      0      0        0        0            0
+ 1        1  93070      3 10000000        5 10000000            3
+ 2        0      0      0      0        0        0            0
+ 3        0      0      0      0        0        0            0
+ 4        0      0      0      0        0        0            0
+ 5        0      0      0      0        0        0            0
+ 6        0      0      0      0        0        0            0
+ 7        0      0      0      0        0        0            0
+ 8        0      0      0      0        0        0            0
+ 9        0      0      0      0        0        0            0
+10        0      0      0      0        0        0            0
+11        0      0      0      0        0        0            0
+12        0      0      0      0        0        0            0
+13        0      0      0      0        0        0            0
+14        0      0      0      0        0        0            0
+15        0      0      0      0        0        0            0
+16        0      0      0      0        0        0            0
+17        0      0      0      0        0        0            0
+18        0      0      0      0        0        0            0
+19        0      0      0      0        0        0            0
+OSS: Sending message to worker slot: 1 PID: 93070 at time: 4:10000000
+OSS: Received reply from worker slot: 1 PID: 93070 with status: 1 at time: 4:10000000
+OSS: Sending message to worker slot: 1 PID: 93070 at time: 4:260000000
+OSS: Received reply from worker slot: 1 PID: 93070 with status: 0 at time: 4:260000000
+OSS: Worker slot: 1 PID: 93070 is terminated
+OSS: Summary: Launched 6 workers, finished 6 workers, total messages sent: 29
